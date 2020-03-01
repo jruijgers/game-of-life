@@ -1,6 +1,7 @@
 package game;
 
 import java.io.PrintWriter;
+import java.security.SecureRandom;
 import java.util.Random;
 
 public class LifeGrid {
@@ -22,9 +23,9 @@ public class LifeGrid {
         }
     }
 
-    public void initialize() {
+    public synchronized void initialize() {
         int min = width * height / 4;
-        Random random = new Random(1l);
+        Random random = new SecureRandom();
 
         int numberOfLifeCells = min + random.nextInt(min);
 
@@ -35,7 +36,7 @@ public class LifeGrid {
         }
     }
 
-    public void nextGeneration() {
+    public synchronized void nextGeneration() {
         boolean[][] newGrid = new boolean[width][height];
 
         for (int x = 0; x < width; x++) {
@@ -68,7 +69,7 @@ public class LifeGrid {
         return aliveNeighbours;
     }
 
-    private boolean isAlive(int x, int y) {
+    private synchronized boolean isAlive(int x, int y) {
         if (x < 0) x += width;
         if (x >= width) x -= width;
         if (y < 0) y += height;

@@ -3,7 +3,6 @@ package ui;
 import game.LifeGrid;
 
 import java.io.Console;
-import java.io.PrintWriter;
 
 public class GameOfLiveConsole implements GameOfLive {
 
@@ -16,7 +15,7 @@ public class GameOfLiveConsole implements GameOfLive {
     }
 
     @Override
-    public void loop() {
+    public void loop(int waitTimeInMillis) {
         show();
 
         waitForInput(console);
